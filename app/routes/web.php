@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController as S;
+use App\Http\Controllers\MasterController as M;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,15 @@ Route::prefix('services')->name('services-')->group(function () {
     Route::put('/edit/{service}', [S::class, 'update'])->name('update');
     Route::delete('/delete/{service}', [S::class, 'destroy'])->name('delete');
     });
+
+    Route::prefix('masters')->name('masters-')->group(function () {
+        Route::get('/', [M::class, 'index'])->name('index');
+        Route::get('/create', [M::class, 'create'])->name('create');
+        Route::post('/create', [M::class, 'store'])->name('store');
+        Route::get('/edit/{master}', [M::class, 'edit'])->name('edit');
+        Route::put('/edit/{master}', [M::class, 'update'])->name('update');
+        Route::delete('/delete/{master}', [M::class, 'destroy'])->name('delete');
+        });
 
 Auth::routes();
 
